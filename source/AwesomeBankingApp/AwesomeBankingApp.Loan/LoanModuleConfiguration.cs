@@ -5,10 +5,10 @@ namespace AwesomeBankingApp.Loan
 {
     public class LoanModuleConfiguration
     {
-        public decimal? AnnualInterestRate { get; set; }
-        public decimal? AdministrationFeePercent { get; set; }
-        public decimal? AdministrationFeeMaxValue { get; set; }
-        public InterestRateCalculationFrequency? InterestRateCalculationFrequency { get; set; }
+        public decimal? DefaultAnnualInterestRate { get; set; }
+        public decimal? DefaultAdministrationFeePercent { get; set; }
+        public decimal? DefaultAdministrationFeeMaxValue { get; set; }
+        public InterestRateCalculationFrequency? DefaultInterestRateCalculationFrequency { get; set; }
 
     }
 }

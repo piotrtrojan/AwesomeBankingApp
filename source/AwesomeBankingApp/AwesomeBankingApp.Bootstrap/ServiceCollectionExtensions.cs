@@ -8,7 +8,8 @@ namespace AwesomeBankingApp.Bootstrap
     {
         public static IServiceCollection AddModule<TModule>(this IServiceCollection services, IConfigurationRoot configurationRoot) where TModule : ModuleBootstrap
         {
-            object instance = Activator.CreateInstance(typeof(TModule), services, configurationRoot);
+            var instance = Activator.CreateInstance(typeof(TModule), services, configurationRoot) as ModuleBootstrap;
+            instance.RegisterDependencies();
             return services.AddSingleton(instance);
         }
     }

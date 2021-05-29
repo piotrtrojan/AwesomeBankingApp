@@ -1,30 +1,40 @@
 ﻿using AwesomeBankingApp.Loan.Contracts;
 using AwesomeBankingApp.Loan.Interfaces;
-using Microsoft.Extensions.Options;
 using System;
 
 namespace AwesomeBankingApp.Loan.Services
 {
     public class LoanCalculationService : ILoanCalculationService
     {
-        private readonly LoanModuleConfiguration loanConfiguration;
+        private readonly ILoanConfigurationProvider configurationProvider;
 
-        public LoanCalculationService(IOptions<LoanModuleConfiguration> configuration)
+        public LoanCalculationService(ILoanConfigurationProvider configurationProvider)
         {
-            loanConfiguration = configuration?.Value ?? throw new ArgumentException("Bank configuration not provided.", nameof(configuration));
-            _ = loanConfiguration.AdministrationFeeMaxValue ?? 
-                    throw new ArgumentException("Administration fee max value not provided.", nameof(loanConfiguration.AdministrationFeeMaxValue));
-            _ = loanConfiguration.AdministrationFeePercent ?? 
-                    throw new ArgumentException("Administration fee not provided.", nameof(loanConfiguration.AdministrationFeePercent));
-            _ = loanConfiguration.AnnualInterestRate ?? 
-                    throw new ArgumentException("Annual interest rate not provided.", nameof(loanConfiguration.AnnualInterestRate));
-            _ = loanConfiguration.InterestRateCalculationFrequency ?? 
-                    throw new ArgumentException("Interest rate calculation frequesncy.", nameof(loanConfiguration.InterestRateCalculationFrequency));
+            this.configurationProvider = configurationProvider;
         }
 
         public LoanCalculationResult GenerateLoanCalculation(LoanCalculationQuery query)
         {
-            throw new NotImplementedException();
+            var loanConfiguration = configurationProvider.GetConfiguration();
+
+            var r = loanConfiguration.AnnualInterestRate;
+            var k = 12;
+            var n = query.DurationOfLoan;
+            var fees = Math.Min(query.LoanAmount * loanConfiguration.AdministrationFeePercent, loanConfiguration.AdministrationFeeMaxValue);
+            var bigN = query.LoanAmount;
+            var kkr = Math.Pow((double)(k / (k + r)), n);
+            var fPerMonth = fees / n;
+            var rata = (bigN * r) / (decimal)(k * (1 - kkr));
+            //var rataAll = rata + fPerMonth;
+
+            var totalFees = (rata * n) - bigN;
+
+            return new LoanCalculationResult
+            {
+                MonthlyCost = Math.Round(rata, 2),
+                TotalAdministrativeFees = Math.Round(fees, 2),
+                TotalInterstsFees = Math.Round(totalFees, 2)
+            };
         }
     }
 }

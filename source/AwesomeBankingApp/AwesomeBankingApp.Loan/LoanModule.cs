@@ -3,7 +3,6 @@ using AwesomeBankingApp.Loan.Interfaces;
 using AwesomeBankingApp.Loan.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace AwesomeBankingApp.Loan
 {
@@ -14,14 +13,12 @@ namespace AwesomeBankingApp.Loan
             RegisterConfiguration<LoanModuleConfiguration>("LoanModule");
         }
 
-        public override void Run(ILogger logger)
+        public override void RegisterDependencies()
         {
-            logger.LogInformation("LoanModule has been properly started...");
-        }
+            RegisterDependenciesGuard();
 
-        protected override void RegisterDependencies(IServiceCollection serviceCollection)
-        {
-            serviceCollection.AddTransient<ILoanCalculationService, LoanCalculationService>();
+            _serviceCollection.AddTransient<ILoanCalculationService, LoanCalculationService>();
+            _serviceCollection.AddSingleton<ILoanConfigurationProvider, LoanConfigurationProvider>();
         }
     }
 }

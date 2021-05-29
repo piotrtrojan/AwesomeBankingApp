@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using System;
 
 namespace AwesomeBankingApp.Bootstrap
@@ -9,19 +8,24 @@ namespace AwesomeBankingApp.Bootstrap
     {
         protected IServiceCollection _serviceCollection;
         protected IConfiguration _configuration;
+        protected bool _configurationRegistered;
 
         protected ModuleBootstrap(IServiceCollection serviceCollection, IConfiguration configuration)
         {
-            IServiceCollection serviceCollection1 = serviceCollection;
-            _serviceCollection = serviceCollection1 ?? throw new ArgumentNullException(nameof(serviceCollection));
-            IConfiguration configuration1 = configuration;
-            _configuration = configuration1 ?? throw new ArgumentNullException(nameof(configuration));
-            RegisterDependencies(serviceCollection);
+            _serviceCollection = serviceCollection ?? throw new ArgumentNullException(nameof(serviceCollection));
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            _configurationRegistered = false;
         }
 
-        public abstract void Run(ILogger logger);
+        public abstract void RegisterDependencies();
 
-        protected abstract void RegisterDependencies(IServiceCollection serviceCollection);
+        protected virtual void RegisterDependenciesGuard()
+        {
+            if (_configurationRegistered == true)
+                throw new InvalidOperationException($"Configuration of {GetType().Name} has already been registered.");
+            
+            _configurationRegistered = true;
+        }
 
         protected void RegisterConfiguration<TOptions>(string sectionName = null) where TOptions : class
         {
@@ -30,5 +34,7 @@ namespace AwesomeBankingApp.Bootstrap
                     _configuration :
                     _configuration.GetSection(sectionName));
         }
+
+        
     }
 }

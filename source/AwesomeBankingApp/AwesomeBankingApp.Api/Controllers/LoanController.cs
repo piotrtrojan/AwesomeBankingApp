@@ -17,7 +17,12 @@ namespace AwesomeBankingApp.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok();
+            var result = service.GenerateLoanCalculation(new Loan.Contracts.LoanCalculationQuery
+            {
+                DurationOfLoan = 12,
+                LoanAmount = 20_000
+            });
+            return Ok(result);
         }
     }
 }

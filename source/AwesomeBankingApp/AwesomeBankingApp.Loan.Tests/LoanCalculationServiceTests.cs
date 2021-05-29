@@ -42,7 +42,7 @@ namespace AwesomeBankingApp.Loan.Tests
                 LoanAmount = 500_000 
             });
             Assert.Equal(5_303.28m, calculationResult.MonthlyCost, 2);
-            Assert.Equal(136_303.09m, calculationResult.TotalInterstsFees, 2);
+            Assert.Equal(136_393.09m, calculationResult.TotalInterstsFees, 2);
             Assert.Equal(5_000m, calculationResult.TotalAdministrativeFees, 2);
         }
     }
