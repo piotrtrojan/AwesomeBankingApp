@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AwesomeBankingApp.Loan.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AwesomeBankingApp.Api.Controllers
 {
@@ -6,9 +7,11 @@ namespace AwesomeBankingApp.Api.Controllers
     [ApiController]
     public class LoanController : ControllerBase
     {
-        public LoanController()
-        {
+        private readonly ILoanCalculationService service;
 
+        public LoanController(ILoanCalculationService service)
+        {
+            this.service = service;
         }
 
         [HttpGet]

@@ -5,6 +5,20 @@ VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwesomeBankingApp.Api", "AwesomeBankingApp.Api\AwesomeBankingApp.Api.csproj", "{703E0767-5323-43BE-970C-2BEF399BC09F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwesomeBankingApp.Loan", "AwesomeBankingApp.Loan\AwesomeBankingApp.Loan.csproj", "{C7D97C0B-6CBE-41A5-812D-08CB39D28A05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwesomeBankingApp.Bootstrap", "AwesomeBankingApp.Bootstrap\AwesomeBankingApp.Bootstrap.csproj", "{18C7A1DA-B9D1-435C-A0AB-A784437546E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bootstrap", "Bootstrap", "{0C68FDCE-30BE-43F3-B50D-96CBC9BF0039}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Loan", "Loan", "{662C8CED-487A-4564-9B59-0478D66EFA15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwesomeBankingApp.Loan.Tests", "AwesomeBankingApp.Loan.Tests\AwesomeBankingApp.Loan.Tests.csproj", "{97F6770C-1DCB-47B6-A5FE-3780D73B19EE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C7D97C0B-6CBE-41A5-812D-08CB39D28A05} = {C7D97C0B-6CBE-41A5-812D-08CB39D28A05}
+		{18C7A1DA-B9D1-435C-A0AB-A784437546E1} = {18C7A1DA-B9D1-435C-A0AB-A784437546E1}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +29,26 @@ Global
 		{703E0767-5323-43BE-970C-2BEF399BC09F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{703E0767-5323-43BE-970C-2BEF399BC09F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{703E0767-5323-43BE-970C-2BEF399BC09F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7D97C0B-6CBE-41A5-812D-08CB39D28A05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7D97C0B-6CBE-41A5-812D-08CB39D28A05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7D97C0B-6CBE-41A5-812D-08CB39D28A05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7D97C0B-6CBE-41A5-812D-08CB39D28A05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18C7A1DA-B9D1-435C-A0AB-A784437546E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18C7A1DA-B9D1-435C-A0AB-A784437546E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18C7A1DA-B9D1-435C-A0AB-A784437546E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18C7A1DA-B9D1-435C-A0AB-A784437546E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97F6770C-1DCB-47B6-A5FE-3780D73B19EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97F6770C-1DCB-47B6-A5FE-3780D73B19EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97F6770C-1DCB-47B6-A5FE-3780D73B19EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97F6770C-1DCB-47B6-A5FE-3780D73B19EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C7D97C0B-6CBE-41A5-812D-08CB39D28A05} = {662C8CED-487A-4564-9B59-0478D66EFA15}
+		{18C7A1DA-B9D1-435C-A0AB-A784437546E1} = {0C68FDCE-30BE-43F3-B50D-96CBC9BF0039}
+		{97F6770C-1DCB-47B6-A5FE-3780D73B19EE} = {662C8CED-487A-4564-9B59-0478D66EFA15}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {06DD9DDF-8CF9-4917-B05B-1E493BDF2BF6}
