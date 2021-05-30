@@ -13,7 +13,7 @@ namespace AwesomeBankingApp.Bootstrap
         protected ModuleBootstrap(IServiceCollection serviceCollection, IConfiguration configuration)
         {
             _serviceCollection = serviceCollection ?? throw new ArgumentNullException(nameof(serviceCollection));
-            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            _configuration = configuration;
             _configurationRegistered = false;
         }
 
@@ -21,7 +21,7 @@ namespace AwesomeBankingApp.Bootstrap
 
         protected virtual void RegisterDependenciesGuard()
         {
-            if (_configurationRegistered == true)
+            if (_configurationRegistered)
                 throw new InvalidOperationException($"Configuration of {GetType().Name} has already been registered.");
             
             _configurationRegistered = true;
@@ -29,10 +29,13 @@ namespace AwesomeBankingApp.Bootstrap
 
         protected void RegisterConfiguration<TOptions>(string sectionName = null) where TOptions : class
         {
-            _serviceCollection.Configure<TOptions>(
+            if (_configuration != null)
+            {
+                _serviceCollection.Configure<TOptions>(
                     sectionName == null ? 
                     _configuration :
                     _configuration.GetSection(sectionName));
+            }
         }
 
         

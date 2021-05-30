@@ -6,34 +6,39 @@ namespace AwesomeBankingApp.Loan.Services
 {
     public class LoanCalculationService : ILoanCalculationService
     {
-        private readonly ILoanConfigurationProvider configurationProvider;
+        private readonly ILoanConfigurationProvider loanConfigurationProvider;
+        private readonly IMonthlyCostCalculationService monthlyCostCalculationService;
+        private readonly IAdministrationFeesCalculationService administrationFeesCalculationService;
+        private readonly ICapitalizationService capitalizationService;
+        private readonly IAnnualPercentageRateService annualPercentageRateService;
 
-        public LoanCalculationService(ILoanConfigurationProvider configurationProvider)
+        public LoanCalculationService(
+            ILoanConfigurationProvider loanConfigurationProvider,
+            IMonthlyCostCalculationService monthlyCostCalculationService,
+            IAdministrationFeesCalculationService administrationFeesCalculationService,
+            ICapitalizationService capitalizationService,
+            IAnnualPercentageRateService annualPercentageRateService)
         {
-            this.configurationProvider = configurationProvider;
+            this.loanConfigurationProvider = loanConfigurationProvider;
+            this.monthlyCostCalculationService = monthlyCostCalculationService;
+            this.administrationFeesCalculationService = administrationFeesCalculationService;
+            this.capitalizationService = capitalizationService;
+            this.annualPercentageRateService = annualPercentageRateService;
         }
 
         public LoanCalculationResult GenerateLoanCalculation(LoanCalculationQuery query)
         {
-            var loanConfiguration = configurationProvider.GetConfiguration();
-
-            var r = loanConfiguration.AnnualInterestRate;
-            var k = 12;
-            var n = query.DurationOfLoan;
-            var fees = Math.Min(query.LoanAmount * loanConfiguration.AdministrationFeePercent, loanConfiguration.AdministrationFeeMaxValue);
-            var bigN = query.LoanAmount;
-            var kkr = Math.Pow((double)(k / (k + r)), n);
-            var fPerMonth = fees / n;
-            var rata = (bigN * r) / (decimal)(k * (1 - kkr));
-            //var rataAll = rata + fPerMonth;
-
-            var totalFees = (rata * n) - bigN;
-
+            var roundingPrecision = loanConfigurationProvider.GetDecimalRoundingPrecision();
+            var capitalizationsPerYear = capitalizationService.GetCapitalizationsPerYear(query.InterestRateCalculationFrequency);
+            var monthlyCost = monthlyCostCalculationService.GetMonthlyCost(query, capitalizationsPerYear);
+            var administartiveCosts = administrationFeesCalculationService.GetFees(query);
+            
             return new LoanCalculationResult
             {
-                MonthlyCost = Math.Round(rata, 2),
-                TotalAdministrativeFees = Math.Round(fees, 2),
-                TotalInterstsFees = Math.Round(totalFees, 2)
+                MonthlyCost = Math.Round(monthlyCost, roundingPrecision),
+                TotalAdministrativeFees = Math.Round(administartiveCosts, roundingPrecision),
+                TotalInterstsFees = Math.Round(monthlyCost * query.LoanDuration - query.LoanAmount, roundingPrecision),
+                YearlyPercentageCost = Math.Round(annualPercentageRateService.GetAnnualPercentageRate(query), roundingPrecision)
             };
         }
     }

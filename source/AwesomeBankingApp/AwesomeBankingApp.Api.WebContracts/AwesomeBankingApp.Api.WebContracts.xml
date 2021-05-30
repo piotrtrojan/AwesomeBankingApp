@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AwesomeBankingApp.Api.WebContracts</name>
+    </assembly>
+    <members>
+        <member name="T:AwesomeBankingApp.Api.WebContracts.Loan.LoanCalculationRequest">
+            <summary>
+            Contains data required to make a loan calculation.
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Api.WebContracts.Loan.LoanCalculationRequest.LoanAmount">
+            <summary>
+            Amount of money that client wants to loan. 
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Api.WebContracts.Loan.LoanCalculationRequest.LoanDuration">
+            <summary>
+            Length of a loan measured in months. It equals number of loan installments. Accept full months only.
+            </summary>
+        </member>
+        <member name="T:AwesomeBankingApp.Api.WebContracts.Loan.LoanCalculationResponse">
+            <summary>
+            Contains loan calculation results.
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Api.WebContracts.Loan.LoanCalculationResponse.YearlyPercentageCost">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Api.WebContracts.Loan.LoanCalculationResponse.MonthlyCost">
+            <summary>
+            Money to be paid each month.
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Api.WebContracts.Loan.LoanCalculationResponse.TotalInterstsFees">
+            <summary>
+            Total amount of all fees related to interests.
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Api.WebContracts.Loan.LoanCalculationResponse.TotalAdministrativeFees">
+            <summary>
+            Total amount of administration fees. Administrative fees are not included in monthly cost. 
+            It is paid on loan startup.
+            </summary>
+        </member>
+        <member name="T:AwesomeBankingApp.Api.WebContracts.Loan.LoanCustomCalculationRequest">
+            <summary>
+            Contains data required to make a custom loan calculation, where more data must be provided.
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Api.WebContracts.Loan.LoanCustomCalculationRequest.AnnualInterestRate">
+            <summary>
+            Annual interest rate in percents, e.g. 5 means 5%.
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Api.WebContracts.Loan.LoanCustomCalculationRequest.AdministrationFeePercent">
+            <summary>
+            Administartion fee that needs to be paid, represented as percent of LoanAmount.
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Api.WebContracts.Loan.LoanCustomCalculationRequest.AdministrationFeeMaxValue">
+            <summary>
+            Maximum value of administration fee that can be paid. When not provided, there will be no limit.
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Api.WebContracts.Loan.LoanCustomCalculationRequest.InterestRateCalculationFrequency">
+            <summary>
+            Interest rate calculation frequency. Possible values are: Daily, Weekly, Monthly, Yearly
+            </summary>
+        </member>
+    </members>
+</doc>

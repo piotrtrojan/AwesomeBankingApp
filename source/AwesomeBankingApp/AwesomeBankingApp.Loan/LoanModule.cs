@@ -8,17 +8,22 @@ namespace AwesomeBankingApp.Loan
 {
     public class LoanModule : ModuleBootstrap
     {
-        public LoanModule(IServiceCollection serviceCollection, IConfiguration configuration) : base(serviceCollection, configuration)
+        public LoanModule(IServiceCollection serviceCollection, IConfiguration configuration) 
+            : base(serviceCollection, configuration)
         {
-            RegisterConfiguration<LoanModuleConfiguration>("LoanModule");
+            RegisterConfiguration<LoanModuleConfiguration>(GetType().Name);
         }
 
         public override void RegisterDependencies()
         {
             RegisterDependenciesGuard();
 
-            _serviceCollection.AddTransient<ILoanCalculationService, LoanCalculationService>();
             _serviceCollection.AddSingleton<ILoanConfigurationProvider, LoanConfigurationProvider>();
+            _serviceCollection.AddTransient<IAdministrationFeesCalculationService, AdministrationFeesCalculationService>();
+            _serviceCollection.AddTransient<ICapitalizationService, CapitalizationService>();
+            _serviceCollection.AddTransient<IMonthlyCostCalculationService, MonthlyCostCalculationService>();
+            _serviceCollection.AddTransient<IAnnualPercentageRateService, AnnualPercentageRateService>();
+            _serviceCollection.AddTransient<ILoanCalculationService, LoanCalculationService>();
         }
     }
 }

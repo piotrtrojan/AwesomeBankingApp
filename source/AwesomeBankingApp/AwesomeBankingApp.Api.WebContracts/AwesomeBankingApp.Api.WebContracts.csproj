@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>$(SolutionDir)\AwesomeBankingApp.Api.WebContracts\AwesomeBankingApp.Api.WebContracts.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>

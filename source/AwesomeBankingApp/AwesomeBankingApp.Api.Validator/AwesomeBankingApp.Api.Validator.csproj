@@ -1,7 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AwesomeBankingApp.Api.WebContracts\AwesomeBankingApp.Api.WebContracts.csproj" />
+    <ProjectReference Include="..\AwesomeBankingApp.Bootstrap\AwesomeBankingApp.Bootstrap.csproj" />
+    <ProjectReference Include="..\AwesomeBankingApp.Loan\AwesomeBankingApp.Loan.csproj" />
+  </ItemGroup>
 
 </Project>
