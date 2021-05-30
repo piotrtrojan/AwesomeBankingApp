@@ -1,14 +1,11 @@
-using AwesomeBankingApp.Api.Validator;
-using AwesomeBankingApp.Api.WebContracts.Loan;
 using AwesomeBankingApp.Bootstrap;
-using AwesomeBankingApp.Loan;
+using AwesomeBankingApp.Loan.Validator;
+using AwesomeBankingApp.Loan.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AwesomeBankingApp.Api
 {
@@ -36,20 +33,16 @@ namespace AwesomeBankingApp.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddLogging();
-            services.AddControllers()
-                // Disable default net core error pages, use FluentValidation errors.
-                .ConfigureApiBehaviorOptions(opt => opt.SuppressMapClientErrors = true); 
 
             services.AddSwaggerGen(c =>
             {
-                GetSwaggerXmlCommentsPath().ToList().ForEach(q => c.IncludeXmlComments(q));
+                c.IncludeXmlComments(GetSwaggerXmlCommentsPath());
             });
 
-            // Register automapper profile
-            services.AddAutoMapper(new[] { typeof(AutomapperProfile) });
-
-            services.AddModule<LoanModule>((IConfigurationRoot)Configuration);
-            services.AddModule<ApiWebContractsValidatorModule>();
+            // Register Loan Web Module - controllers, mappers, swagger, contracts.
+            services.AddModule<LoanWebModule>((IConfigurationRoot)Configuration);
+            // Reigster Loan Web Contracts Validator - validation for all requests in Loan Web Module
+            services.AddModule<LoanWebContractsValidatorModule>();
         }
 
         /// <summary>
@@ -78,13 +71,11 @@ namespace AwesomeBankingApp.Api
             });
         }
 
-        private static IEnumerable<string> GetSwaggerXmlCommentsPath()
+        private static string GetSwaggerXmlCommentsPath()
         {
             var app = System.AppContext.BaseDirectory;
             var assemblyDocumentation = System.Reflection.Assembly.GetExecutingAssembly().ManifestModule.Name.Replace(".dll", ".xml");
-            yield return System.IO.Path.Combine(app, assemblyDocumentation);
-            var contractsDocumentation = System.Reflection.Assembly.GetAssembly(typeof(LoanCalculationRequest)).ManifestModule.Name.Replace(".dll", ".xml");
-            yield return System.IO.Path.Combine(app, contractsDocumentation);
+            return System.IO.Path.Combine(app, assemblyDocumentation);   
         }
     }
 }

@@ -10,9 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AwesomeBankingApp.Api.WebContracts\AwesomeBankingApp.Api.WebContracts.csproj" />
     <ProjectReference Include="..\AwesomeBankingApp.Bootstrap\AwesomeBankingApp.Bootstrap.csproj" />
-    <ProjectReference Include="..\AwesomeBankingApp.Loan\AwesomeBankingApp.Loan.csproj" />
+    <ProjectReference Include="..\AwesomeBankingApp.Loan.Web\AwesomeBankingApp.Loan.Web.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,9 @@
-﻿using AwesomeBankingApp.Api.WebContracts.Loan;
-using AwesomeBankingApp.Loan.Enums;
+﻿using AwesomeBankingApp.Loan.Enums;
+using AwesomeBankingApp.Loan.WebContracts.Loan;
 using FluentValidation;
 using System;
 
-namespace AwesomeBankingApp.Api.Validator.Loan
+namespace AwesomeBankingApp.Loan.Validator.Loan
 {
     public class LoanCustomCalculationRequestValidator : AbstractValidator<LoanCustomCalculationRequest>
     {

@@ -16,8 +16,6 @@ namespace AwesomeBankingApp.Loan
 
         public override void RegisterDependencies()
         {
-            RegisterDependenciesGuard();
-
             _serviceCollection.AddSingleton<ILoanConfigurationProvider, LoanConfigurationProvider>();
             _serviceCollection.AddTransient<IAdministrationFeesCalculationService, AdministrationFeesCalculationService>();
             _serviceCollection.AddTransient<ICapitalizationService, CapitalizationService>();

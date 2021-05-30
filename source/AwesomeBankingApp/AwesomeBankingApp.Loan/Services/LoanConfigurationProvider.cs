@@ -38,14 +38,26 @@ namespace AwesomeBankingApp.Loan.Services
         public int GetDecimalRoundingPrecision()
             => configuration.DecimalRoundingPrecision.Value;
 
-        public void UpdateAdministartionFee(decimal administrationFee) 
-            => loanConfiguration.AdministrationFeePercent = administrationFee / 100;
+        public void UpdateAdministartionFee(decimal administrationFee)
+        {
+            if (administrationFee < 0)
+                throw new ArgumentException($"{nameof(administrationFee)} cannot be negative", nameof(administrationFee));
+            loanConfiguration.AdministrationFeePercent = administrationFee / 100;
+        }
 
-        public void UpdateAdministartionMax(decimal administrationMax) 
-            => loanConfiguration.AdministrationFeeMaxValue = administrationMax;
+        public void UpdateAdministartionMax(decimal administrationMax)
+        {
+            if (administrationMax < 0)
+                throw new ArgumentException($"{nameof(administrationMax)} cannot be negative", nameof(administrationMax));
+            loanConfiguration.AdministrationFeeMaxValue = administrationMax;
+        }
 
-        public void UpdateAnnualInterest(decimal annualInterest) 
-            => loanConfiguration.AnnualInterestRate = annualInterest / 100;
+        public void UpdateAnnualInterest(decimal annualInterest)
+        {
+            if (annualInterest < 0)
+                throw new ArgumentException($"{nameof(annualInterest)} cannot be negative", nameof(annualInterest));
+            loanConfiguration.AnnualInterestRate = annualInterest / 100;
+        }
 
         public void UpdateInterestFrequency(InterestRateCalculationFrequency frequency) 
             => loanConfiguration.InterestRateCalculationFrequency = frequency;

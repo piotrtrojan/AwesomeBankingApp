@@ -9,16 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.1.4" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.1.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AwesomeBankingApp.Api.Validator\AwesomeBankingApp.Api.Validator.csproj" />
-    <ProjectReference Include="..\AwesomeBankingApp.Api.WebContracts\AwesomeBankingApp.Api.WebContracts.csproj" />
-    <ProjectReference Include="..\AwesomeBankingApp.Loan\AwesomeBankingApp.Loan.csproj" />
+    <ProjectReference Include="..\AwesomeBankingApp.Loan.Validator\AwesomeBankingApp.Loan.Validator.csproj" />
+    <ProjectReference Include="..\AwesomeBankingApp.Loan.Web\AwesomeBankingApp.Loan.Web.csproj" />
   </ItemGroup>
 
 

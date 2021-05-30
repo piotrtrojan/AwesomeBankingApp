@@ -1,7 +1,7 @@
-﻿using AwesomeBankingApp.Api.WebContracts.Loan;
+﻿using AwesomeBankingApp.Loan.WebContracts;
 using FluentValidation;
 
-namespace AwesomeBankingApp.Api.Validator.Loan
+namespace AwesomeBankingApp.Loan.Validator.Loan
 {
     public class LoanCalculationRequestValidator : AbstractValidator<LoanCalculationRequest>
     {

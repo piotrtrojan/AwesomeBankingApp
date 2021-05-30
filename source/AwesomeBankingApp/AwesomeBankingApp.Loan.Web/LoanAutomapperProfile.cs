@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
-using AwesomeBankingApp.Api.WebContracts.Loan;
 using AwesomeBankingApp.Loan.Contracts;
+using AwesomeBankingApp.Loan.WebContracts;
+using AwesomeBankingApp.Loan.WebContracts.Loan;
 
-namespace AwesomeBankingApp.Api
+namespace AwesomeBankingApp.Loan
 {
-    internal class AutomapperProfile : Profile
+    internal class LoanAutomapperProfile : Profile
     {
-        public AutomapperProfile()
+        public LoanAutomapperProfile()
         {
             RegisterLoan();
         }

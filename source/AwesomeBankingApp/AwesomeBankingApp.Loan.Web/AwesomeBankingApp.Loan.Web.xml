@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AwesomeBankingApp.Loan.Web</name>
+    </assembly>
+    <members>
+        <member name="T:AwesomeBankingApp.Loan.WebContracts.LoanCalculationRequest">
+            <summary>
+            Contains data required to make a loan calculation.
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Loan.WebContracts.LoanCalculationRequest.LoanAmount">
+            <summary>
+            Amount of money that client wants to loan. 
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Loan.WebContracts.LoanCalculationRequest.LoanDuration">
+            <summary>
+            Length of a loan measured in months. It equals number of loan installments. Accept full months only.
+            </summary>
+        </member>
+        <member name="T:AwesomeBankingApp.Loan.WebContracts.Loan.LoanCalculationResponse">
+            <summary>
+            Contains loan calculation results.
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Loan.WebContracts.Loan.LoanCalculationResponse.YearlyPercentageCost">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Loan.WebContracts.Loan.LoanCalculationResponse.MonthlyCost">
+            <summary>
+            Money to be paid each month.
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Loan.WebContracts.Loan.LoanCalculationResponse.TotalInterstsFees">
+            <summary>
+            Total amount of all fees related to interests.
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Loan.WebContracts.Loan.LoanCalculationResponse.TotalAdministrativeFees">
+            <summary>
+            Total amount of administration fees. Administrative fees are not included in monthly cost. 
+            It is paid on loan startup.
+            </summary>
+        </member>
+        <member name="T:AwesomeBankingApp.Loan.WebContracts.Loan.LoanCustomCalculationRequest">
+            <summary>
+            Contains data required to make a custom loan calculation, where more data must be provided.
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Loan.WebContracts.Loan.LoanCustomCalculationRequest.AnnualInterestRate">
+            <summary>
+            Annual interest rate in percents, e.g. 5 means 5%.
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Loan.WebContracts.Loan.LoanCustomCalculationRequest.AdministrationFeePercent">
+            <summary>
+            Administartion fee that needs to be paid, represented as percent of LoanAmount.
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Loan.WebContracts.Loan.LoanCustomCalculationRequest.AdministrationFeeMaxValue">
+            <summary>
+            Maximum value of administration fee that can be paid.
+            </summary>
+        </member>
+        <member name="P:AwesomeBankingApp.Loan.WebContracts.Loan.LoanCustomCalculationRequest.InterestRateCalculationFrequency">
+            <summary>
+            Interest rate calculation frequency. Possible values are: Daily, Weekly, Monthly, Yearly
+            </summary>
+        </member>
+        <member name="T:AwesomeBankingApp.Loan.Controllers.LoanController">
+            <summary>
+            Handles actions related to Loans.
+            </summary>
+        </member>
+        <member name="M:AwesomeBankingApp.Loan.Controllers.LoanController.#ctor(AwesomeBankingApp.Loan.Interfaces.ILoanCalculationService,AwesomeBankingApp.Loan.Interfaces.ILoanConfigurationProvider,AutoMapper.IMapper)">
+            <summary>
+            Instantiates LoanController.
+            </summary>
+            <param name="service"></param>
+            <param name="configurationProvider"></param>
+            <param name="mapper">Automapper instance</param>
+        </member>
+        <member name="M:AwesomeBankingApp.Loan.Controllers.LoanController.MakeCalculation(AwesomeBankingApp.Loan.WebContracts.LoanCalculationRequest)">
+            <summary>
+            Makes loan calculation. Default values of Fees and interest rates will be applied.
+            </summary>
+            <param name="request"></param>
+            <returns>Information about monthly costs, fees and others. <see cref="T:AwesomeBankingApp.Loan.WebContracts.Loan.LoanCalculationResponse"/></returns>
+        </member>
+        <member name="M:AwesomeBankingApp.Loan.Controllers.LoanController.MakeCalculationCustom(AwesomeBankingApp.Loan.WebContracts.Loan.LoanCustomCalculationRequest)">
+            <summary>
+            Makes custom loan calculation, where additional data must be provided.
+            </summary>
+            <param name="request"></param>
+            <returns>Information about monthly costs, fees and others. <see cref="T:AwesomeBankingApp.Loan.WebContracts.Loan.LoanCalculationResponse"/></returns>
+        </member>
+        <member name="T:AwesomeBankingApp.Loan.Web.LoanWebModule">
+            <summary>
+            Module, containing endpoints and contracts (requests, responses) for Loans handling.
+            </summary>
+        </member>
+        <member name="M:AwesomeBankingApp.Loan.Web.LoanWebModule.#ctor(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Instantiates LoanWebModule
+            </summary>
+            <param name="serviceCollection"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:AwesomeBankingApp.Loan.Web.LoanWebModule.RegisterDependencies">
+            <summary>
+            Registers LoanWebModule dependencies - LoanModule, automapper, swagger and controllers from LoanWebModule.
+            </summary>
+        </member>
+        <member name="T:AwesomeBankingApp.Loan.Web.LoanWebModuleConfiguration">
+            <summary>
+            Contains configuration for LoanWebModule. At this moment, it is not used, but could contain e.g. 
+            prefix for all loan endpoints, like 'v1/'.
+            </summary>
+        </member>
+    </members>
+</doc>

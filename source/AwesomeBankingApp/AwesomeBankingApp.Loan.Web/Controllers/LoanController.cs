@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using AwesomeBankingApp.Api.WebContracts.Loan;
 using AwesomeBankingApp.Loan.Contracts;
 using AwesomeBankingApp.Loan.Interfaces;
+using AwesomeBankingApp.Loan.WebContracts;
+using AwesomeBankingApp.Loan.WebContracts.Loan;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AwesomeBankingApp.Api.Controllers
+namespace AwesomeBankingApp.Loan.Controllers
 {
-
     /// <summary>
     /// Handles actions related to Loans.
     /// </summary>
@@ -24,7 +24,7 @@ namespace AwesomeBankingApp.Api.Controllers
         /// <param name="service"></param>
         /// <param name="configurationProvider"></param>
         /// <param name="mapper">Automapper instance</param>
-        public LoanController(ILoanCalculationService service, 
+        public LoanController(ILoanCalculationService service,
             ILoanConfigurationProvider configurationProvider,
             IMapper mapper)
         {
@@ -42,7 +42,7 @@ namespace AwesomeBankingApp.Api.Controllers
         public IActionResult MakeCalculation([FromQuery] LoanCalculationRequest request)
         {
             var query = mapper.Map<LoanCalculationQuery>(request);
-            
+
             var config = configurationProvider.GetLoanConfiguration();
             query.AdministrationFeeMaxValue = config.AdministrationFeeMaxValue;
             query.AdministrationFeePercent = config.AdministrationFeePercent;
@@ -50,7 +50,7 @@ namespace AwesomeBankingApp.Api.Controllers
             query.InterestRateCalculationFrequency = config.InterestRateCalculationFrequency;
 
             var result = service.GenerateLoanCalculation(query);
-            
+
             var response = mapper.Map<LoanCalculationResponse>(result);
             return Ok(response);
         }

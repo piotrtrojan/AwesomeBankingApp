@@ -3,11 +3,11 @@ using FluentValidation.AspNetCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AwesomeBankingApp.Api.Validator
+namespace AwesomeBankingApp.Loan.Validator
 {
-    public class ApiWebContractsValidatorModule : ModuleBootstrap
+    public class LoanWebContractsValidatorModule : ModuleBootstrap
     {
-        public ApiWebContractsValidatorModule(IServiceCollection serviceCollection, IConfiguration configuration) 
+        public LoanWebContractsValidatorModule(IServiceCollection serviceCollection, IConfiguration configuration) 
             : base(serviceCollection, configuration)
         {
         }
@@ -19,8 +19,9 @@ namespace AwesomeBankingApp.Api.Validator
                 .AddFluentValidation(fv =>
                 {
                     fv.DisableDataAnnotationsValidation = true;
-                    fv.RegisterValidatorsFromAssemblyContaining<ApiWebContractsValidatorModule>();
-                });
+                    fv.RegisterValidatorsFromAssemblyContaining(GetType());
+                })
+                .ConfigureApiBehaviorOptions(opt => opt.SuppressMapClientErrors = true);
         }
     }
 }

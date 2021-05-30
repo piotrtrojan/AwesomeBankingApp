@@ -1,4 +1,4 @@
-﻿namespace AwesomeBankingApp.Api.WebContracts.Loan
+﻿namespace AwesomeBankingApp.Loan.WebContracts.Loan
 {
     /// <summary>
     /// Contains loan calculation results.

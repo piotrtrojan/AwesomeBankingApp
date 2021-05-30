@@ -4,33 +4,6 @@
         <name>AwesomeBankingApp.Api</name>
     </assembly>
     <members>
-        <member name="T:AwesomeBankingApp.Api.Controllers.LoanController">
-            <summary>
-            Handles actions related to Loans.
-            </summary>
-        </member>
-        <member name="M:AwesomeBankingApp.Api.Controllers.LoanController.#ctor(AwesomeBankingApp.Loan.Interfaces.ILoanCalculationService,AwesomeBankingApp.Loan.Interfaces.ILoanConfigurationProvider,AutoMapper.IMapper)">
-            <summary>
-            Instantiates LoanController.
-            </summary>
-            <param name="service"></param>
-            <param name="configurationProvider"></param>
-            <param name="mapper">Automapper instance</param>
-        </member>
-        <member name="M:AwesomeBankingApp.Api.Controllers.LoanController.MakeCalculation(AwesomeBankingApp.Api.WebContracts.Loan.LoanCalculationRequest)">
-            <summary>
-            Makes loan calculation. Default values of Fees and interest rates will be applied.
-            </summary>
-            <param name="request"></param>
-            <returns>Information about monthly costs, fees and others. <see cref="T:AwesomeBankingApp.Api.WebContracts.Loan.LoanCalculationResponse"/></returns>
-        </member>
-        <member name="M:AwesomeBankingApp.Api.Controllers.LoanController.MakeCalculationCustom(AwesomeBankingApp.Api.WebContracts.Loan.LoanCustomCalculationRequest)">
-            <summary>
-            Makes custom loan calculation, where additional data must be provided.
-            </summary>
-            <param name="request"></param>
-            <returns>Information about monthly costs, fees and others. <see cref="T:AwesomeBankingApp.Api.WebContracts.Loan.LoanCalculationResponse"/></returns>
-        </member>
         <member name="T:AwesomeBankingApp.Api.Program">
             <summary>
             Main AwesomeBankingApp.Api class.
