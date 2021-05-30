@@ -24,12 +24,9 @@ namespace AwesomeBankingApp.Authorization.Filters
                         var credentials = Encoding.UTF8
                                             .GetString(Convert.FromBase64String(authHeaderValue.Parameter ?? string.Empty))
                                             .Split(':', 2);
-                        if (credentials.Length == 2)
+                        if (credentials.Length == 2 && IsAuthorized(context, credentials[0], credentials[1]))
                         {
-                            if (IsAuthorized(context, credentials[0], credentials[1]))
-                            {
-                                return;
-                            }
+                            return;
                         }
                     }
                 }
