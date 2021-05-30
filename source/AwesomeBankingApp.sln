@@ -23,6 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeBankingApp.Loan.Web"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwesomeBankingApp.Loan.Validator", "AwesomeBankingApp.Loan.Validator\AwesomeBankingApp.Loan.Validator.csproj", "{3FF66C10-6CA7-4BF5-A541-C63160EB25D2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authorization", "Authorization", "{3D134966-4A20-4E8C-9446-E7AEBDDBDC8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwesomeBankingApp.Authorization", "AwesomeBankingApp.Authorization\AwesomeBankingApp.Authorization.csproj", "{0B8F46DB-033D-41FA-9D2A-BF1785A17A51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,10 @@ Global
 		{3FF66C10-6CA7-4BF5-A541-C63160EB25D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FF66C10-6CA7-4BF5-A541-C63160EB25D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FF66C10-6CA7-4BF5-A541-C63160EB25D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B8F46DB-033D-41FA-9D2A-BF1785A17A51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B8F46DB-033D-41FA-9D2A-BF1785A17A51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B8F46DB-033D-41FA-9D2A-BF1785A17A51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B8F46DB-033D-41FA-9D2A-BF1785A17A51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +71,7 @@ Global
 		{97F6770C-1DCB-47B6-A5FE-3780D73B19EE} = {662C8CED-487A-4564-9B59-0478D66EFA15}
 		{72CC9F3E-D188-4CC0-845B-07FFB755A87C} = {662C8CED-487A-4564-9B59-0478D66EFA15}
 		{3FF66C10-6CA7-4BF5-A541-C63160EB25D2} = {662C8CED-487A-4564-9B59-0478D66EFA15}
+		{0B8F46DB-033D-41FA-9D2A-BF1785A17A51} = {3D134966-4A20-4E8C-9446-E7AEBDDBDC8B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {06DD9DDF-8CF9-4917-B05B-1E493BDF2BF6}

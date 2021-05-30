@@ -1,3 +1,4 @@
+using AwesomeBankingApp.Authorization;
 using AwesomeBankingApp.Bootstrap;
 using AwesomeBankingApp.Loan.Validator;
 using AwesomeBankingApp.Loan.Web;
@@ -43,6 +44,8 @@ namespace AwesomeBankingApp.Api
             services.AddModule<LoanWebModule>((IConfigurationRoot)Configuration);
             // Reigster Loan Web Contracts Validator - validation for all requests in Loan Web Module
             services.AddModule<LoanWebContractsValidatorModule>();
+            // Register basic authorization, just for demo purposes.
+            services.AddModule<AuthorizationModule>((IConfigurationRoot)Configuration);
         }
 
         /// <summary>

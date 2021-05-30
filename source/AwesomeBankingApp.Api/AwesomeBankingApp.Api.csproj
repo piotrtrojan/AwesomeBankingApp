@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AwesomeBankingApp.Authorization\AwesomeBankingApp.Authorization.csproj" />
     <ProjectReference Include="..\AwesomeBankingApp.Loan.Validator\AwesomeBankingApp.Loan.Validator.csproj" />
     <ProjectReference Include="..\AwesomeBankingApp.Loan.Web\AwesomeBankingApp.Loan.Web.csproj" />
   </ItemGroup>
