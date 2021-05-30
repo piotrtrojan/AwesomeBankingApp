@@ -62,7 +62,7 @@
         </member>
         <member name="P:AwesomeBankingApp.Api.WebContracts.Loan.LoanCustomCalculationRequest.AdministrationFeeMaxValue">
             <summary>
-            Maximum value of administration fee that can be paid. When not provided, there will be no limit.
+            Maximum value of administration fee that can be paid.
             </summary>
         </member>
         <member name="P:AwesomeBankingApp.Api.WebContracts.Loan.LoanCustomCalculationRequest.InterestRateCalculationFrequency">
